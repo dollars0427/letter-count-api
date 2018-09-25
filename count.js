@@ -52,7 +52,9 @@ function countText(file, fileType, option){
     textract.fromBufferWithMime(fileType, file, function(error, text) {
       if(error){
         errorLogger.error(error);
+        return;
       };
+      const cleanText = text.replace(/ /g, '');
       switch(option){
         case 'words':
         let wordsCount = 0;
